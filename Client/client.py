@@ -8,7 +8,7 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(('0.0.0.0', 9999))
 
 # send some data (in this case a HTTP GET request)
-client.send('Hello')
+client.send('12&18')
 
 # receive the response data (4096 is recommended buffer size)
 response = client.recv(4096)

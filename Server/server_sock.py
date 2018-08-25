@@ -1,5 +1,4 @@
-import socket, threading
-from consumer import *
+import socket
 
 # Socket config
 HOSTNAME = 'localhost'

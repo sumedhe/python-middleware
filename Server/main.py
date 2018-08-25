@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import time, threading
 import server_sock
 from models.queue import Queue

@@ -1,6 +1,9 @@
-from models.queue import Queue
-import consumer
 import time
+from services.gcd_service import *
+from utils.message_parser import *
+from models.queue import Queue
+
+
 
 SLEEP_TIME = 1
 
@@ -15,8 +18,19 @@ def handle_request_queue(request_queue, response_queue):
 		else:
 			# Consume
 			(client_socket, message) = request_queue.dequeue()
-			response = consumer.execute(message)
-			response_queue.enqueue((client_socket, response))
+
+			# Call GCD Service
+			params = get_params(message)
+			if (not len(params) == 2):
+				response = "Parameters does not match"
+			else:
+				# try:
+				response = gcd(int(params[0]), int(params[1]))
+				# except:
+					# response = "Invalid parameters"
+
+			response_queue.enqueue((client_socket, str(response)))
+
 
 # Send responses to client
 def handle_response_queue(response_queue):

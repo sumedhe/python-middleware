@@ -8,21 +8,22 @@ from queue_handler import *
 RECV_SIZE = 1024
 
 # Create message queues for requests and responds
-request_queue = Queue()
-response_queue = Queue()
+REQUEST_QUEUE  = Queue()
+RESPONSE_QUEUE = Queue()
+
 
 # Start queue handlers
 try:
 	# Request queue thread
 	threading.Thread(
 		target = handle_request_queue,
-		args = (request_queue, response_queue,)
+		args = (REQUEST_QUEUE, RESPONSE_QUEUE,)
 	).start()
 
 	# Response queue thread
 	threading.Thread(
 		target = handle_response_queue,
-		args = (response_queue,)
+		args = (RESPONSE_QUEUE,)
 	).start()
 
 except Exception as e:
@@ -40,4 +41,4 @@ while True:
 
     # Add to message queue
     message = client_socket.recv(RECV_SIZE)
-    request_queue.enqueue((client_socket, message))
+    REQUEST_QUEUE.enqueue((client_socket, message))

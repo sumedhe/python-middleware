@@ -2,7 +2,7 @@ import socket
 
 # Socket config
 HOSTNAME = 'localhost'
-PORT = 9999
+PORT = 9992
 MAX_BACKLOG = 10
 
 def start():

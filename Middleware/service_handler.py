@@ -39,7 +39,7 @@ def request_service(service_name, params):
 	# create an ipv4 (AF_INET) socket object using the tcp protocol (SOCK_STREAM)
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.connect((hostname, int(port)))
-	sock.send('&'.join(params))
+	sock.send(' '.join(params))
 
 	# receive the response data (4096 is recommended buffer size)
 	response = sock.recv(4096)

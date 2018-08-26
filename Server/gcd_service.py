@@ -17,8 +17,9 @@ print 'Listening on {}:{}'.format(HOSTNAME, PORT)
 
 def handle_client_connection(client_socket):
     request = client_socket.recv(1024)
+    print request
     try:
-        params   = request.split('&')
+        params   = request.split(' ')
         response = gcd(int(params[0]), int(params[1]))
     except:
         response = "Invalid parameter count"
@@ -41,7 +42,7 @@ def register_service():
 
     # Connect to the middleware
     sock.connect((MIDDLEWARE_HOSTNAME, MIDDLEWARE_PORT))
-    sock.send("addservice {}&{}&{}".format(SERVICE_NAME, HOSTNAME, PORT))
+    sock.send("addservice {} {} {}".format(SERVICE_NAME, HOSTNAME, PORT))
 
     # Get response
     response = sock.recv(4096)

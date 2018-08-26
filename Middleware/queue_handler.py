@@ -9,7 +9,7 @@ REQUEST_QUEUE  = Queue()
 RESPONSE_QUEUE = Queue()
 
 
-SLEEP_TIME = 0.5
+SLEEP_TIME = 0.2
 
 
 # Consume messages

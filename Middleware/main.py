@@ -7,23 +7,19 @@ from queue_handler import *
 
 RECV_SIZE = 1024
 
-# Create message queues for requests and responds
-REQUEST_QUEUE  = Queue()
-RESPONSE_QUEUE = Queue()
-
 
 # Start queue handlers
 try:
 	# Request queue thread
 	threading.Thread(
 		target = handle_request_queue,
-		args = (REQUEST_QUEUE, RESPONSE_QUEUE,)
+		args = ()
 	).start()
 
 	# Response queue thread
 	threading.Thread(
 		target = handle_response_queue,
-		args = (RESPONSE_QUEUE,)
+		args = ()
 	).start()
 
 except Exception as e:

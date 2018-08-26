@@ -1,16 +1,19 @@
 import socket
 
-# create an ipv4 (AF_INET) socket object using the tcp protocol (SOCK_STREAM)
+# Create socket
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # connect the client
-# client.connect((target, port))
-client.connect(('0.0.0.0', 9999))
+client.connect(('localhost', 9992))
 
-# send some data (in this case a HTTP GET request)
-client.send('12&18')
+client.send('addservice gcd&localhost&9993')
+# client.send('removeservice gcd')
+# client.send('lookupservice gcd')
+# client.send('gcd 12&18')
 
-# receive the response data (4096 is recommended buffer size)
+# Get response
 response = client.recv(4096)
-
+client.close()
 print response
+
+
